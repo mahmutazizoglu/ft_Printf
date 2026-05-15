@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maazizog <maazizog@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/14 17:33:51 by maazizog          #+#    #+#             */
-/*   Updated: 2026/05/15 18:50:33 by maazizog         ###   ########.fr       */
+/*   Created: 2026/05/15 10:49:52 by maazizog          #+#    #+#             */
+/*   Updated: 2026/05/15 14:01:15 by maazizog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdint.h>
+int	ft_putstr(char *s)
+{
+	int	i;
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_typecheck(const char type, va_list args);
-int		ft_putstr(char *s);
-int		ft_putnbr(int nbr);
-int		ft_putptr(void *ptr);
-
-#endif
+	i = 0;
+	if (!s)
+		return (write(1, "(null)", 6));
+	while (s[i])
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	return (i);
+}

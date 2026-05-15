@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maazizog <maazizog@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/14 13:32:59 by maazizog          #+#    #+#             */
-/*   Updated: 2026/05/15 11:00:02 by maazizog         ###   ########.fr       */
+/*   Created: 2026/05/15 14:33:31 by maazizog          #+#    #+#             */
+/*   Updated: 2026/05/15 19:28:16 by maazizog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+static int	ft_putptr_hex(uintptr_t n)
 {
-	int		i;
 	int		count;
-	va_list	args;
+	char	*base;
 
-	va_start(args, format);
-	i = 0;
+	base = "0123456789abcdef";
 	count = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			count += ft_typecheck(format[i], args);
-		}
-		else
-			count += ft_putchar(format[i]);
-		i++;
-	}
-	if (count < 0)
-		return (-1);
+	if (n >= 16)
+		count += ft_putptr_hex(n / 16);
+	count += ft_putchar(base[n % 16]);
+	return (count);
+}
+
+int	ft_putptr(void *ptr)
+{
+	int			count;
+	uintptr_t	addr;
+
+	if (!ptr)
+		return (ft_putstr("(nil)"));
+	addr = (uintptr_t)ptr;
+	count = 0;
+	count += ft_putstr("0x");
+	count += ft_putptr_hex(addr);
 	return (count);
 }

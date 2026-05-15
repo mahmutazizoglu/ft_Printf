@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maazizog <maazizog@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/14 17:33:51 by maazizog          #+#    #+#             */
-/*   Updated: 2026/05/15 18:50:33 by maazizog         ###   ########.fr       */
+/*   Created: 2026/05/15 11:44:22 by maazizog          #+#    #+#             */
+/*   Updated: 2026/05/15 13:56:22 by maazizog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdint.h>
+int	ft_putnbr(int nbr)
+{
+	int	count;
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_typecheck(const char type, va_list args);
-int		ft_putstr(char *s);
-int		ft_putnbr(int nbr);
-int		ft_putptr(void *ptr);
-
-#endif
+	count = 0;
+	if (nbr == -2147483648)
+		return (write(1, "-2147483648", 11));
+	if (nbr < 0)
+	{
+		count += ft_putchar('-');
+		nbr = -nbr;
+	}
+	if (nbr > 9)
+	{
+		count += ft_putnbr(nbr / 10);
+		count += ft_putnbr(nbr % 10);
+	}
+	else
+		count += ft_putchar(nbr + '0');
+	return (count);
+}
