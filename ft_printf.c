@@ -6,7 +6,7 @@
 /*   By: maazizog <maazizog@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:32:59 by maazizog          #+#    #+#             */
-/*   Updated: 2026/05/14 17:54:05 by maazizog         ###   ########.fr       */
+/*   Updated: 2026/05/15 08:50:44 by maazizog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 int	ft_printf(const char *format, ...)
 {
+	int	i;
+	int	count;
+	va_list	args;
 	
+	va_start(args, format)
 }
