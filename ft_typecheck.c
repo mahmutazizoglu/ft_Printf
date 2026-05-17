@@ -6,7 +6,7 @@
 /*   By: maazizog <maazizog@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 09:47:10 by maazizog          #+#    #+#             */
-/*   Updated: 2026/05/15 19:15:56 by maazizog         ###   ########.fr       */
+/*   Updated: 2026/05/17 19:01:58 by maazizog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int	ft_typecheck(const char type, va_list args)
 		count += ft_putnbr(va_arg(args, int));
 	else if (type == 'u')
 		count += ft_putuns(va_arg(args, unsigned int));
-	else if (type == 'x')
-		count += ft_putx(va_arg(args, unsigned int), type);
-	else if (type == 'X')
+	else if (type == 'x' || type == 'X')
 		count += ft_putx(va_arg(args, unsigned int), type);
 	else if (type == '%')
 		return (write(1, "%", 1));
